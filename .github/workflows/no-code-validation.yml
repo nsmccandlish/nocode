@@ -1,0 +1,47 @@
+name: No Code Validation
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  validate-no-code:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Validate no code exists
+      run: |
+        echo "Checking for code violations..."
+        if find . -name "*.js" -o -name "*.py" -o -name "*.java" -o -name "*.cpp" -o -name "*.c" -o -name "*.go" -o -name "*.rs" | grep -q .; then
+          echo "❌ CIAL - Code Is A Liability! Code found in repository!"
+          exit 1
+        else
+          echo "✅ LGTM - No code found. Repository is compliant!"
+        fi
+
+    - name: Check file sizes
+      run: |
+        echo "Validating file sizes comply with no-code standards..."
+        find . -name "*.no" -exec du -h {} \; | while read size file; do
+          if [ "$size" != "0" ]; then
+            echo "❌ File $file is not empty: $size"
+            exit 1
+          fi
+        done
+        echo "✅ All .no files are properly empty!"
+
+    - name: Dockerfile validation
+      run: |
+        echo "Validating Dockerfile follows no-code principles..."
+        if [ -f "Dockerfile" ]; then
+          if grep -q "FROM scratch" Dockerfile; then
+            echo "✅ Dockerfile properly uses scratch image"
+          else
+            echo "❌ Dockerfile should use 'FROM scratch' for true no-code deployment"
+            exit 1
+          fi
+        fi

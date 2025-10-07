@@ -1,5 +1,8 @@
 # No Code
 
+[![No Code Validation](https://github.com/nsmccandlish/nocode/actions/workflows/no-code-validation.yml/badge.svg)](https://github.com/nsmccandlish/nocode/actions/workflows/no-code-validation.yml)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+
 No code is the best way to write secure and reliable applications. Write nothing; deploy nowhere.
 
 ## Getting Started
@@ -48,6 +51,10 @@ It's that simple. And when it comes time to scale the application, all you have 
 
 I know right?
 
+## Security
+
+No code means no vulnerabilities. See our [Security Policy](SECURITY.md) for more details.
+
 ## Contributing
 
-You don't.
+You don't. See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on how to not contribute.
